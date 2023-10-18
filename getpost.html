@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="prtice/jquery-3.7.1.js"></script>
+
+</head>
+
+<body>
+    <button id="btnPOST">发起post请求</button>
+
+
+    <!-- 搜索引擎 -->
+    <h4 id="title">用户信息</h4>
+    <div>姓名：<span id="name">22</span></div>
+    <div>年龄：<span id="age">22</span></div>
+    <div>会员：<span id="huiyuan">22</span></div>
+    <div>注册时间：<span id="timeVIP">22</span></div>
+    <div>爱好：
+        <ul id="hobby">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+
+    </div>
+
+
+    <script>
+        $(function () { //封装的jquery函数
+            $('#btnPOST').on('click', function () { //创建点击事件
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://www.showdoc.com.cn/1834761734600444/8449558512832212',
+                    data: {
+                        bookname: '属性', author: '书店'
+                    },
+                    success: function (res) {
+                        console.log(res)
+                    }
+                })
+            })
+        })
+
+
+        // 搜索引擎-传统做法
+        var data = {
+            title: '搜索引擎',
+            name: '小李',
+            age: 16,
+            huiyuan: true,
+            timeVIP: '2010-2-16',
+            hobby: ['吃饭', '睡觉', '打豆豆']
+        }
+
+        // 封装
+        $(function () {
+            $('#title').html(data.title)
+            $('#name').html(data.name)
+            $('#age').html(data.age)
+            $('#huiyuan').html(data.huiyuan)
+            $('#timeVIP').html(data.timeVIP)
+            // 遍历数组，添加给li
+            var rows = []//把下面添加好的放到数组里
+            $.each(data.hobby, function (i, item) {
+                rows.push('<li>' + item + '</li>')
+                $('#hobby').html(rows.join(''))
+            })
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
